@@ -1,4 +1,4 @@
-node_modules/
+# Task one
+task-one/node_modules/
+task-one/yarn-error.log
 .vscode/
-.DS_STORE
-yarn-error.log

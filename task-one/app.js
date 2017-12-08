@@ -12,7 +12,7 @@ app.set('view engine', 'hbs');
 app.use((request, response, next) => {
     console.log('New connection from', request.ip, 'requesting', request.url,
         'via', request.method, 'method');
-    if (request.url === '/robots.txt') return response.render('oops');
+    if (request.url === '/robots.txt') return response.status(403).render('oops');
 
     next();
 });
