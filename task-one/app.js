@@ -24,23 +24,22 @@ app.get('/', (request, response) => {
     response.send('Hello World - Karan (xXAlphaManXx)');
 });
 app.get('/authors', (request, response) => {
-    axios.get('https://jsonplaceholder.typicode.com/users').then((users) => {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then((posts) => {
+    axios.get('https://jsonplaceholder.typicode.com/users').then(users => {
+        axios.get('https://jsonplaceholder.typicode.com/posts').then(posts => {
             var output = "<ul>";
 
-            for (var i = 1; i <= _.size(users); i++) {
-                var postsByUser = _.size(_.filter(posts.data, { userId: i }));
+            for (var i = 0; i < _.size(users.data); i++) {
+                var postsByUser = _.filter(posts.data, { userId: i });
+
                 output += '<li>' + users.data[i].name + ' has published '
-                    + postsByUser + ' posts </li>';
+                    + postsByUser.length + ' posts </li>';
             }
 
             output += "</ul>";
 
             response.send(output);
-        });
-    }).catch((error) => {
-        response.status(500).render('error');
-    });
+        }).catch(error => {response.status(500).render('error'); console.log(error)});
+    }).catch(error => response.status(500).render('error'));
 });
 app.get('/setcookie', (request, response) => {
     response.cookie('name', 'Karan Sanjeev Nair');
