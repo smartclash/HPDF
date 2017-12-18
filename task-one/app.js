@@ -38,7 +38,7 @@ app.get('/authors', (request, response) => {
             output += "</ul>";
 
             response.send(output);
-        }).catch(error => {response.status(500).render('error'); console.log(error)});
+        }).catch(error => response.status(500).render('error'));
     }).catch(error => response.status(500).render('error'));
 });
 app.get('/setcookie', (request, response) => {
