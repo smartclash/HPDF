@@ -1,11 +1,11 @@
-const _ = require('lodash');
+// const _ = require('lodash');
 const hbs = require('hbs');
 const axios = require('axios');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-let app = express();
+const app = express();
 
 app.set('view engine', 'hbs');
 
@@ -26,14 +26,14 @@ app.get('/', (request, response) => {
 app.get('/authors', (request, response) => {
     axios.get('https://jsonplaceholder.typicode.com/users').then(users => {
         axios.get('https://jsonplaceholder.typicode.com/posts').then(posts => {
-            var output = "<ul>";
+            let output = "<ul>";
 
-            for (var i = 0; i < _.size(users.data); i++) {
-                var postsByUser = _.filter(posts.data, { userId: i });
-
-                output += '<li>' + users.data[i].name + ' has published '
-                    + postsByUser.length + ' posts </li>';
-            }
+            users.data.forEach(user => {
+                let postsByUser = posts.data.filter(
+                    post => post.userId == user.id
+                ).length;
+                output += '<li>' + user.name + ' has ' + postsByUser + ' posts</li>';
+            });
 
             output += "</ul>";
 
