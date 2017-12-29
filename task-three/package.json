@@ -1,0 +1,14 @@
+{
+  "name": "alphaman-task-three",
+  "version": "1.0.0",
+  "description": "A simple facebook clon",
+  "main": "public/app.js",
+  "author": "xXAlphaManXx and Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "validator": "^9.2.0"
+  }
+}
